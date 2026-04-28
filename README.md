@@ -8,7 +8,7 @@ BitPay is a high-performance, decentralized finance (DeFi) platform built on the
 
 ---
 
-## 🏦 Dashboard Preview
+## 🏦 Dashboard
 
 ![Dashboard Preview](public/assets/dashboard.png)
 
@@ -27,12 +27,6 @@ Monitor your XLM and BIT balances in real-time with a modern dark-mode dashboard
 
 ### 🔐 Trustline Management
 Add and manage Stellar trustlines directly from the app. The on-chain asset code is `AGT` (deployed name); displayed as **BIT** throughout the UI.
-
----
-
-## 📱 Mobile Responsive View
-
-![Mobile View](public/assets/mobile-view.png)
 
 ---
 
@@ -60,7 +54,7 @@ Add and manage Stellar trustlines directly from the app. The on-chain asset code
 | **Blockchain** | Stellar Soroban (Rust Smart Contracts) |
 | **Wallet** | Freighter API v6+ |
 | **Data Fetching** | SWR (Real-time Polling) |
-| **Deployment** | Vercel |
+| **Deployment** | Netlify |
 
 ---
 
