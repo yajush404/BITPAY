@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sentry/nextjs": "^8.0.0",
     "@stellar/freighter-api": "^6.0.1",
     "@stellar/stellar-sdk": "^15.0.1",
+    "axios": "^1.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.3",
     "lucide-react": "^0.321.0",
-    "next": "^14.2.21",
+    "next": "^14.2.22",
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.4",
@@ -28,9 +28,14 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.5.0",
     "eslint": "^8",
-    "eslint-config-next": "^14.2.21",
+    "eslint-config-next": "^14.2.22",
     "postcss": "^8.5.10",
     "tailwindcss": "^4.2.4",
     "typescript": "5.9.3"
+  },
+  "overrides": {
+    "postcss": "^8.5.10",
+    "axios": "^1.7.0",
+    "glob": "^11.0.0"
   }
 }

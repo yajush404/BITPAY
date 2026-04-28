@@ -1,10 +1,14 @@
 # ⚡️ BitPay
 
 [![CI](https://github.com/yajush404/BITPAY/actions/workflows/ci.yml/badge.svg)](https://github.com/yajush404/BITPAY/actions/workflows/ci.yml)
+[![Lint](https://github.com/yajush404/BITPAY/actions/workflows/lint.yml/badge.svg)](https://github.com/yajush404/BITPAY/actions/workflows/lint.yml)
+[![Security Audit](https://github.com/yajush404/BITPAY/actions/workflows/security.yml/badge.svg)](https://github.com/yajush404/BITPAY/actions/workflows/security.yml)
 
 BitPay is a high-performance, decentralized finance (DeFi) platform built on the **Stellar Soroban** smart contract ecosystem. Experience secure, swift, and low-cost payments and asset swaps with a premium, motion-rich interface.
 
 **🌐 Live Demo:** [https://lighthearted-salmiakki-8488d9.netlify.app](https://lighthearted-salmiakki-8488d9.netlify.app)
+
+**🎥 Video Demo (1-Min):** [Watch the Demo on YouTube]()
 
 ---
 
