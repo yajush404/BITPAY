@@ -14,7 +14,7 @@ export async function GET(
     const res = await fetch(`${HORIZON}/accounts/${publicKey}`, { next: { revalidate: 5 } });
 
     if (!res.ok) {
-      return NextResponse.json({ agtBalance: '0', xlmBalance: '0', hasTrustline: false, agtLimit: '0' });
+      return NextResponse.json({ bitBalance: '0', xlmBalance: '0', hasTrustline: false, bitLimit: '0' });
     }
 
     const account = await res.json();

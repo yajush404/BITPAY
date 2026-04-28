@@ -3,7 +3,7 @@ const { Server, Network } = require('@stellar/stellar-sdk');
 const server = new Server('https://horizon-testnet.stellar.org');
 Network.useTestNetwork();
 
-async function checkTrustline(publicKey, assetCode = 'AGT', issuerKey = process.env.STELLAR_ISSUER_PUBLIC) {
+async function checkTrustline(publicKey, assetCode = 'BIT', issuerKey = process.env.STELLAR_ISSUER_PUBLIC) {
   try {
     const account = await server.loadAccount(publicKey);
     const balance = account.balances.find(

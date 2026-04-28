@@ -32,7 +32,7 @@ const EventRow = memo(function EventRow({ event }: { event: ContractEvent }) {
         </div>
         <div className="flex items-center gap-2 mt-0.5">
           <span className="text-xs font-mono font-bold text-text-secondary">
-            {parseFloat(event.amount || '0').toLocaleString(undefined, { maximumFractionDigits: 4 })} AGT
+            {parseFloat(event.amount || '0').toLocaleString(undefined, { maximumFractionDigits: 4 })} BIT
           </span>
           <span className="text-[10px] text-gray-300">•</span>
           <span className="text-[10px] text-text-muted font-medium">
