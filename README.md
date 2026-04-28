@@ -4,7 +4,7 @@
 
 BitPay is a high-performance, decentralized finance (DeFi) platform built on the **Stellar Soroban** smart contract ecosystem. Experience secure, swift, and low-cost payments and asset swaps with a premium, motion-rich interface.
 
-**🌐 Live Demo:** [https://bitpay-demo.vercel.app](https://bitpay-demo.vercel.app)
+**🌐 Live Demo:** [https://lighthearted-salmiakki-8488d9.netlify.app](https://lighthearted-salmiakki-8488d9.netlify.app)
 
 ---
 
