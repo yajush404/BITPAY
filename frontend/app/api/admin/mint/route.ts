@@ -25,7 +25,8 @@ export async function POST(req: Request) {
     }
 
     const issuerKp    = Keypair.fromSecret(ISSUER_SECRET);
-    const bitAsset    = new Asset('BIT', issuerKp.publicKey());
+    // On-chain classic Stellar asset is 'AGT' — branded as 'BIT' in UI
+    const bitAsset    = new Asset('AGT', issuerKp.publicKey());
     const server      = new Horizon.Server(HORIZON_URL);
     const issuerAcct  = await server.loadAccount(issuerKp.publicKey());
 

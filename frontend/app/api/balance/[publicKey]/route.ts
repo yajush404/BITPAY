@@ -3,6 +3,10 @@ import { NextResponse } from 'next/server';
 const HORIZON = 'https://horizon-testnet.stellar.org';
 const ISSUER  = process.env.STELLAR_ISSUER_PUBLIC || process.env.NEXT_PUBLIC_BIT_ISSUER || '';
 
+// The on-chain classic Stellar asset was deployed as 'AGT' but we brand it as 'BIT'.
+// We look for BOTH codes so the user's balance shows regardless of which trustline they added.
+const ASSET_CODES = ['AGT', 'BIT'];
+
 export async function GET(
   _request: Request,
   { params }: { params: { publicKey: string } }
@@ -10,7 +14,6 @@ export async function GET(
   const { publicKey } = params;
 
   try {
-    // BIT is now a classic Stellar Asset (via SAC wrapper) — read everything from Horizon
     const res = await fetch(`${HORIZON}/accounts/${publicKey}`, { next: { revalidate: 5 } });
 
     if (!res.ok) {
@@ -21,24 +24,26 @@ export async function GET(
     const balances: any[] = account.balances || [];
 
     // XLM
-    const xlmEntry = balances.find((b) => b.asset_type === 'native');
+    const xlmEntry = balances.find((b: any) => b.asset_type === 'native');
     const xlmBalance = xlmEntry?.balance ?? '0';
 
-    // BIT (classic asset)
+    // Look for AGT first (the real on-chain asset), then fall back to BIT trustline
     let bitEntry = balances.find(
-      (b) => b.asset_code === 'BIT' && (ISSUER ? b.asset_issuer === ISSUER : true)
+      (b: any) => ASSET_CODES.includes(b.asset_code) && (ISSUER ? b.asset_issuer === ISSUER : true)
     );
-    
-    // Final fallback: if we have an ISSUER but didn't find a match, 
-    // check if ANY 'BIT' exists to avoid showing "Trustline required" 
-    // when the user clearly has some version of BIT.
-    if (!bitEntry && ISSUER) {
-      bitEntry = balances.find((b) => b.asset_code === 'BIT');
+
+    // Further fallback: accept any matching asset code even without issuer match
+    if (!bitEntry) {
+      bitEntry = balances.find((b: any) => ASSET_CODES.includes(b.asset_code));
     }
 
     const hasTrustline = !!bitEntry;
-    const bitBalance   = bitEntry?.balance ?? '0';
-    const bitLimit     = bitEntry?.limit   ?? '0';
+    // Sum AGT + BIT balances if user somehow has both
+    const agtBalance = balances
+      .filter((b: any) => ASSET_CODES.includes(b.asset_code) && (ISSUER ? b.asset_issuer === ISSUER : true))
+      .reduce((sum: number, b: any) => sum + parseFloat(b.balance || '0'), 0);
+    const bitBalance = agtBalance > 0 ? agtBalance.toFixed(7) : (bitEntry?.balance ?? '0');
+    const bitLimit   = bitEntry?.limit ?? '0';
 
     return NextResponse.json({ bitBalance, xlmBalance, hasTrustline, bitLimit });
   } catch (err) {

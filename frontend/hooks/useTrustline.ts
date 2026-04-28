@@ -7,6 +7,9 @@ import { Horizon, TransactionBuilder, Operation, Asset, BASE_FEE } from '@stella
 const HORIZON_URL = process.env.NEXT_PUBLIC_HORIZON_URL || 'https://horizon-testnet.stellar.org';
 const NETWORK_PASSPHRASE = 'Test SDF Network ; September 2015'; // Networks.TESTNET
 const BIT_ISSUER = process.env.NEXT_PUBLIC_BIT_ISSUER || '';
+// The on-chain asset is deployed as 'AGT' — the Stellar classic asset code.
+// We brand it as 'BIT' in the UI but must use 'AGT' for all blockchain operations.
+const ON_CHAIN_ASSET_CODE = 'AGT';
 
 export const useTrustline = (publicKey: string) => {
   const { data, mutate, isLoading } = useSWR(
@@ -32,7 +35,8 @@ export const useTrustline = (publicKey: string) => {
       const account = await server.loadAccount(pkString);
 
       // 3. Build a changeTrust transaction
-      const bitAsset = new Asset('BIT', BIT_ISSUER || account.account_id);
+      // NOTE: On-chain asset code is 'AGT' (deployed name). We brand it 'BIT' in the UI.
+      const bitAsset = new Asset(ON_CHAIN_ASSET_CODE, BIT_ISSUER || account.account_id);
       const tx = new TransactionBuilder(account, {
         fee: BASE_FEE,
         networkPassphrase: NETWORK_PASSPHRASE,
