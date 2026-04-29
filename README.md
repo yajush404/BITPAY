@@ -114,4 +114,4 @@ To interact with the protocol, add a trustline to the **AGT** asset (`GBALPCSLWT
 
 ---
 
-Built with ❤️ for the Stellar Community.
+Built with ❤️ for the Stellar Community
